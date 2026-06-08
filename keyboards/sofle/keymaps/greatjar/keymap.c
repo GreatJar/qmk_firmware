@@ -16,7 +16,8 @@ enum custom_keycodes {
     KC_LSTRT,
     KC_LEND,
     KC_SELPRV,
-    KC_SELNXT
+    KC_SELNXT,
+    CT_TOGG
 };
 
 #define KC_QWERTY PDF(_QWERTY)
@@ -42,8 +43,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
   KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
   KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                      KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,  KC_MUTE,   KC_F12,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-                KC_LGUI, KC_LALT, KC_ENT,  TL_LOWR, KC_SPC,    KC_BSLS, TL_UPPR, KC_RCTL, KC_RALT, KC_RGUI
+  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,  CT_TOGG,   KC_MPLY, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+                KC_LGUI, KC_LALT, KC_SPC,  TL_LOWR, KC_ENT,    KC_BSLS, TL_UPPR, KC_RCTL, KC_RALT, KC_RGUI
 ),
 /*
  * GAME
@@ -132,8 +133,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
+static bool ctrl_toggled = false;
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        case CT_TOGG:
+            if (record->event.pressed) {
+                if (!ctrl_toggled) {
+                    ctrl_toggled = true;
+                    register_code(KC_LCTL);
+                } else {
+                    ctrl_toggled = false;
+                    unregister_code(KC_LCTL);
+                }
+            }
+            return false;
         case KC_PRVWD:
             if (record->event.pressed) {
                 if (keymap_config.swap_lctl_lgui) {
@@ -252,9 +266,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 #ifdef ENCODER_MAP_ENABLE
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
-    [_QWERTY] = { ENCODER_CCW_CW(MS_WHLU, MS_WHLD), ENCODER_CCW_CW(MS_WHLL, MS_WHLR) },
-    [_GAME]   = { ENCODER_CCW_CW(KC_F14,  KC_F13),  ENCODER_CCW_CW(KC_F17,  KC_F16)  },
-    [_LOWER]  = { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(KC_F20,  KC_F19)  },
+    [_QWERTY] = { ENCODER_CCW_CW(MS_WHLD, MS_WHLU), ENCODER_CCW_CW(MS_WHLR, MS_WHLL) },
+    [_GAME]   = { ENCODER_CCW_CW(KC_F13,  KC_F14),  ENCODER_CCW_CW(KC_F16,  KC_F17)  },
+    [_LOWER]  = { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(KC_F19,  KC_F20)  },
     [_RAISE]  = { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
     [_ADJUST] = { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
 };
