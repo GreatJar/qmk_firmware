@@ -44,7 +44,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
   KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                      KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
   KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,  CT_TOGG,   KC_MPLY, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-                KC_LGUI, KC_LALT, KC_SPC,  TL_LOWR, KC_ENT,    KC_BSLS, TL_UPPR, KC_RCTL, KC_RALT, KC_RGUI
+                KC_LGUI, KC_LALT, KC_SPC,  TL_LOWR, KC_ENT,    KC_NUBS, TL_UPPR, KC_RCTL, KC_RALT, KC_RGUI
 ),
 /*
  * GAME
@@ -74,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | CAPS |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  | F12  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |   !  |   @  |   #  |   $  |   %  |-------.    ,-------|   ^  |   &  |   *  |   (  |   )  |   |  |
+ * |      |   !  |   @  |   #  |   $  |   %  |-------.    ,-------|   ^  |   &  |   *  |   (  |   )  |   ~  |
  * |------+------+------+------+------+------|  MUTE |    |  F21  |------+------+------+------+------+------|
  * |      |  =   |  -   |  +   |   {  |   }  |-------|    |-------|   [  |   ]  |   ;  |   :  |   \  |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
@@ -85,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_LOWER] = LAYOUT(
   KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                       KC_F6,   KC_F7,         KC_F8,         KC_F9,   KC_F10,  KC_F11,
   KC_CAPS, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                        KC_6,    KC_7,          KC_8,          KC_9,    KC_0,    KC_F12,
-  _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                     KC_CIRC, KC_AMPR,       KC_ASTR,       KC_LPRN, KC_RPRN, KC_PIPE,
+  _______, KC_EXLM, KC_AT,   KC_NUHS, KC_DLR,  KC_PERC,                     KC_CIRC, KC_AMPR,       KC_ASTR,       KC_LPRN, KC_RPRN, KC_PIPE,
   _______, KC_EQL,  KC_MINS, KC_PLUS, KC_LCBR, KC_RCBR, _______,   KC_F21, KC_LBRC, KC_RBRC,       KC_SCLN,       KC_COLN, KC_BSLS, _______,
                     _______, _______, _______, _______, _______,   _______, _______, KC_SELPRV,     KC_SELNXT,     _______
 ),
